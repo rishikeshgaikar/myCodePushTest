@@ -1,5 +1,5 @@
 package com.mycodepushtest;
-
+import com.microsoft.codepush.react.CodePush;
 import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
@@ -18,6 +18,11 @@ public class MainApplication extends Application implements ReactApplication {
         public boolean getUseDeveloperSupport() {
           return BuildConfig.DEBUG;
         }
+         // bundle location from on each app start
+        @Override
+        protected String getJSBundleFile() {
+            return CodePush.getJSBundleFile();
+        }
 
         @Override
         protected List<ReactPackage> getPackages() {
@@ -25,7 +30,10 @@ public class MainApplication extends Application implements ReactApplication {
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
+
+          new CodePush("1yxL2r9xmsbj8NESvoZuj1EGSVAic_GwyPdyc", MainApplication.this, BuildConfig.DEBUG);
           return packages;
+          
         }
 
         @Override

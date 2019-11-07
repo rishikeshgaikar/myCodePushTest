@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
-
+import codePush from 'react-native-code-push';
 export class App extends Component {
   render() {
     return (
@@ -11,4 +11,8 @@ export class App extends Component {
   }
 }
 
-export default App;
+const codePushOptions = {
+  checkFrequency: codePush.CheckFrequency.ON_APP_START,
+};
+
+export default codePush(codePushOptions)(App);
